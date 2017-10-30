@@ -1,0 +1,8 @@
+<div *ngIf="item">
+  <youtube-player [videoId]="item.videoId" (ready)="onReady($event)" width="100%"></youtube-player>
+  <div class="title-container">
+    <h1 class="title">{{item.title}}</h1>
+    <button mat-raised-button color="primary" (click)="onAdd()">加入清單</button>
+  </div>
+  <h3>{{item.description}}</h3>
+</div>

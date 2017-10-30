@@ -1,0 +1,9 @@
+<div class="summary-container">
+  <div class="summary-title">Now playing:</div>
+  <p class="summary-album" *ngIf="summaryItem">{{summaryItem.title}}</p>
+  <div class="summary-sub-container">
+    <div class="img-container" *ngIf="summaryItem">
+      <img class="img-circle" src={{summaryItem.thumbnail}}/>
+    </div>
+  </div>
+</div>

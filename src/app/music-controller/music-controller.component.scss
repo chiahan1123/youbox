@@ -1,0 +1,55 @@
+.music-controller-container {
+  height: 130px;
+  width: 100%;
+  max-width: 1000px;
+  border: 4px outset #727785;
+  margin-top: 25px;
+  background-image: url('http://eskipaper.com/images/dark-background-9.jpg')
+}
+
+.music-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.music-button {
+  display: inline;
+  margin-left: 40px;
+}
+
+.volume-button-container {
+  @extend .music-button-container;
+  margin-top: 10px;
+}
+
+.volume-button {
+  display: inline;
+}
+
+.music-container {
+  overflow: hidden;
+}
+
+.play-item-thumbnail {
+  height: 90px;
+  width: 120px;
+  margin-top: 20px;
+  float: left;
+}
+
+.music-title {
+  color: white;
+  font-size: x-large;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.button-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.button-icon-small {
+  width: 30px;
+  height: 30px;
+}

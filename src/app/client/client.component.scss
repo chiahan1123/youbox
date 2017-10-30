@@ -1,0 +1,27 @@
+.title-container {
+  padding: 15px
+}
+
+.input-container {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.search-input {
+  margin-right: 20px;
+  background: #ac0809;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 20px;
+  width: 50%;
+  font-size: 20px;
+}
+
+.search-input:focus {
+  outline: none;
+}
+

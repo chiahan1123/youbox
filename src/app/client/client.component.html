@@ -1,0 +1,21 @@
+<div fxLayout="row" fxLayout.lt-md="column">
+  <div fxLayout="column" fxFlex="50%" fxLayoutGap="0px" style="position: relative">
+    <h1 class="title-container">點首歌聽聽吧</h1>
+    <div *ngIf="loaded">
+      <div class="input-container">
+        <input class="search-input" (input)="term=$event.target.value" (keydown)="onEnter($event)">
+        <button mat-raised-button color="primary" (click)="onSearch()" [disabled]="!term">搜尋</button>
+      </div>
+    </div>
+    <br/>
+    <app-search-list [searchList]="searchList"></app-search-list>
+  </div>
+  <div fxLayout="column" fxFlex="50%">
+    <app-music-controller *ngIf="loaded"></app-music-controller>
+    <div>
+      <h1 class="title-container">今日歌單:</h1>
+      <app-playlist *ngIf="loaded"></app-playlist>
+    </div>
+  </div>
+</div>
+<app-progress-spinner></app-progress-spinner>

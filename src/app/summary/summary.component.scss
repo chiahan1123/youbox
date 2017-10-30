@@ -1,0 +1,41 @@
+.img-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  top: 60px;
+}
+
+.summary-container {
+  height: 500px;
+  background-image: url('http://www.mulierchile.com/black-background-image/black-background-image-011.jpg');
+}
+
+.summary-sub-container {
+  height: 100px;
+  position: relative;
+}
+
+.summary-text {
+  color: white;
+}
+
+.summary-title {
+  @extend .summary-text;
+  font-size: xx-large;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.summary-album {
+  @extend .summary-text;
+  font-size: x-large;
+  padding-left: 25px;
+  padding-right: 15px;
+}

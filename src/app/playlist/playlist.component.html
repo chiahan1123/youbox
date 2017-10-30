@@ -1,0 +1,6 @@
+<div class="container">
+  <div *ngFor="let item of playlist; let i = index">
+    <app-playlist-item [playItem]="item" [grayBackground]="i % 2 == 1" [darkTheme]="item.key === currentPlaying"></app-playlist-item>
+  </div>
+  <app-progress-spinner></app-progress-spinner>
+</div>
