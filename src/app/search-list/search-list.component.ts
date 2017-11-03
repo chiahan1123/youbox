@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PlayItem } from '../playlist-item/playItem';
-import { FetchService } from '../fetch.service';
 import { MatDialog } from '@angular/material';
 import { PreviewComponent } from '../preview/preview.component';
 
