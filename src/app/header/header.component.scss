@@ -1,8 +1,11 @@
 @import "../../variables.scss";
 
 .title {
+  display: flex;
+  align-items: center;
+  height: $header-height;
   background-color: $red;
   color: white;
-  padding: 15px;
+  padding-left: 15px;
   font-size: large;
 }
