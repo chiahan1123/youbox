@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class SummaryComponent implements OnInit, OnDestroy {
 
-  // TODO: fetch the real data
   @Input() summaryItem: SummaryItem;
 
   private subscription: Subscription;
