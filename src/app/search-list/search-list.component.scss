@@ -1,5 +1,7 @@
+@import "../../variables.scss";
+
 .empty-text {
-  color: #727785;
+  color: $gray;
   text-align: center;
   padding-top: 30px;
 }
