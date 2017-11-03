@@ -24,11 +24,13 @@
 }
 
 .play-item-thumbnail {
+  flex-grow: 0;
   min-height: 90px;
   padding: 10px;
 }
 
 .no-wrap-container {
+  flex-grow: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -51,4 +53,17 @@
   margin-top: 10px;
   font-size: small;
   padding-right: 5px;
+}
+
+.img-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.img-container {
+  display: flex;
+  flex-grow: 0;
+  margin: 10px;
+  justify-content: flex-end;
 }
