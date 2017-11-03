@@ -1,8 +1,10 @@
+@import "../../variables.scss";
+
 .music-controller-container {
   height: 130px;
   width: 100%;
   max-width: 1000px;
-  border: 4px outset #727785;
+  border: 4px outset $gray;
   margin-top: 25px;
   background-image: url('http://eskipaper.com/images/dark-background-9.jpg')
 }

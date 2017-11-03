@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .play-item-container {
   cursor: pointer;
   display: flex;
@@ -5,27 +7,20 @@
   overflow: hidden;
 }
 
-.gray {
-  background: #f5f5f5;
+.play-item-container:hover {
+  opacity: 0.7;
 }
 
-.play-item-container:hover {
-  background: #22242a;
-  color: white;
+.play-item-container-light {
+  @extend .play-item-container;
+  background: white;
+  color: $dark;
 }
 
 .play-item-container-dark {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  background: #22242a;
+  @extend .play-item-container;
+  background: $dark;
   color: white;
-}
-
-.play-item-container-dark:hover {
-  background: white;
-  color: black;
 }
 
 .play-item-thumbnail {
@@ -46,13 +41,13 @@
 }
 
 .play-item-author {
-  color: #df1f1f;
+  color: $red;
   margin-top: 10px;
 }
 
 .play-item-description {
   @extend .no-wrap-container;
-  color: #727785;
+  color: $gray;
   margin-top: 10px;
   font-size: small;
   padding-right: 5px;

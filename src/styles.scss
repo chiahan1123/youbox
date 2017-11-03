@@ -1,6 +1,15 @@
 @import "app-theme";
+@import "./variables.scss";
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif
+}
+
+.gray {
+  background: $gray;
+}
+
+.white {
+  background: white;
 }

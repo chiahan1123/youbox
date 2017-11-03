@@ -21,7 +21,7 @@ export class PlayListItemComponent {
     if (this.darkTheme) {
       return 'play-item-container-dark';
     }
-    return this.grayBackground ? 'play-item-container gray' : 'play-item-container';
+    return this.grayBackground ? 'play-item-container gray' : 'play-item-container white';
   }
 
 }
