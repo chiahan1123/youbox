@@ -1,8 +1,9 @@
 <div class="container">
   <div *ngFor="let item of searchList; let i = index">
-    <app-playlist-item [playItem]="item" [grayBackground]="i % 2 == 1"
+    <app-playlist-item [playItem]="item"
+                       [grayBackground]="i % 2 == 1"
                        (bindClick)="onItemClick($event)"
                        [darkTheme]="true"></app-playlist-item>
   </div>
-  <h2 class="empty-text" *ngIf="searchList <= 0">GG找不到東西...</h2>
+  <h2 class="empty-text" *ngIf="searchList && searchList.length <= 0">GG找不到東西...</h2>
 </div>
