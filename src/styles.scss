@@ -3,11 +3,12 @@
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: $red;
 }
 
-.gray {
-  background: $gray;
+.light-gray {
+  background: $light-gray;
 }
 
 .white {
