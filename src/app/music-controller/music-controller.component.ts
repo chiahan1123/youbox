@@ -15,8 +15,12 @@ export class MusicControllerComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   playingSubscription: Subscription;
+  volumeSubscription: Subscription;
   playItem = new PlayItem('', '', '', '', '', '', '');
   playButtonIcon = 'play';
+  volume = 0;
+
+  private volumeIncrement = 5;
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,
               private controlService: ControlService, private fetchService: FetchService) {
@@ -42,10 +46,14 @@ export class MusicControllerComponent implements OnInit, OnDestroy {
       .subscribe(playItem => this.playItem = playItem, error => console.log(error));
     this.playingSubscription = this.fetchService.fetchIsPlaying()
       .subscribe(isPlaying => this.playButtonIcon = isPlaying ? 'pause' : 'play');
+    this.volumeSubscription = this.fetchService.fetchStatusVolume()
+      .subscribe(volume => this.volume = volume);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.playingSubscription.unsubscribe();
+    this.volumeSubscription.unsubscribe();
   }
 
   onBack() {
@@ -65,15 +73,15 @@ export class MusicControllerComponent implements OnInit, OnDestroy {
   }
 
   onPlus() {
-    this.fetchService.plus(true);
+    this.fetchService.updateStatusVolume(Math.min(Math.max(this.volume + this.volumeIncrement, 0), 100));
   }
 
   onMinus() {
-    this.fetchService.minus(true);
+    this.fetchService.updateStatusVolume(Math.min(Math.max(this.volume - this.volumeIncrement, 0), 100));
   }
 
   onMute() {
-    this.fetchService.mute(true);
+    this.fetchService.updateStatusVolume(0);
   }
 
 }

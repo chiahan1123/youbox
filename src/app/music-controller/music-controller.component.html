@@ -1,27 +1,28 @@
 <div class="music-controller-container">
   <img class="play-item-thumbnail" src={{playItem.thumbnail}}>
-  <div class="music-container">
+  <div class="control-container">
     <marquee class="music-title">{{playItem.title}}</marquee>
     <div class="music-button-container">
       <button mat-icon-button color="primary" (click)="onBack()">
-        <mat-icon aria-label="上一首" svgIcon="back" class="button-icon"></mat-icon>
+        <mat-icon aria-label="上一首" svgIcon="back"></mat-icon>
       </button>
-      <button mat-icon-button color="primary" (click)="onPlay()" class="music-button">
-        <mat-icon aria-label="播放" svgIcon="{{playButtonIcon}}" class="button-icon"></mat-icon>
+      <button mat-icon-button color="primary" (click)="onPlay()">
+        <mat-icon aria-label="播放" svgIcon="{{playButtonIcon}}"></mat-icon>
       </button>
-      <button mat-icon-button color="primary" (click)="onNext()" class="music-button">
-        <mat-icon aria-label="下一首" svgIcon="next" class="button-icon"></mat-icon>
+      <button mat-icon-button color="primary" (click)="onNext()">
+        <mat-icon aria-label="下一首" svgIcon="next"></mat-icon>
       </button>
     </div>
+    <div class="volume-title">Volume: {{volume}}</div>
     <div class="volume-button-container">
-      <button mat-icon-button color="primary" (click)="onMinus()" class="volume-button">
-        <mat-icon aria-label="小聲" svgIcon="minus" class="button-icon-small"></mat-icon>
+      <button mat-icon-button color="primary" (click)="onMinus()">
+        <mat-icon aria-label="小聲" svgIcon="minus"></mat-icon>
       </button>
-      <button mat-icon-button color="primary" (click)="onMute()" class="volume-button">
-        <mat-icon aria-label="靜音" svgIcon="volume" class="button-icon-small"></mat-icon>
+      <button mat-icon-button color="primary" (click)="onMute()">
+        <mat-icon aria-label="靜音" svgIcon="volume"></mat-icon>
       </button>
-      <button mat-icon-button color="primary" (click)="onPlus()" class="volume-button">
-        <mat-icon aria-label="大聲" svgIcon="plus" class="button-icon-small"></mat-icon>
+      <button mat-icon-button color="primary" (click)="onPlus()">
+        <mat-icon aria-label="大聲" svgIcon="plus"></mat-icon>
       </button>
     </div>
   </div>

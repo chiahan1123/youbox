@@ -1,54 +1,67 @@
 .music-controller-container {
-  height: 130px;
-  width: 100%;
-  max-width: 1000px;
-  margin-top: 25px;
-  background-image: url('http://eskipaper.com/images/dark-background-9.jpg')
-}
-
-.music-button-container {
   display: flex;
-  justify-content: center;
-}
-
-.music-button {
-  display: inline;
-  margin-left: 40px;
-}
-
-.volume-button-container {
-  @extend .music-button-container;
-  margin-top: 10px;
-}
-
-.volume-button {
-  display: inline;
-}
-
-.music-container {
-  overflow: hidden;
+  flex-direction: row;
+  padding: 15px;
+  background-image: url('http://eskipaper.com/images/dark-background-9.jpg');
+  align-items: center;
 }
 
 .play-item-thumbnail {
   height: 90px;
   width: 120px;
-  margin-top: 20px;
-  float: left;
+  flex-grow: 0;
+}
+
+.control-container {
+  flex-grow: 1;
+  margin-left: 10px;
 }
 
 .music-title {
   color: white;
   font-size: x-large;
-  padding-left: 15px;
-  padding-right: 15px;
 }
 
-.button-icon {
-  width: 48px;
-  height: 48px;
+.music-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+
+  mat-icon {
+    width: 48px;
+    height: 48px;
+  }
+  button {
+    width: 48px;
+    height: 48px;
+    margin-left: 30px;
+  }
+  button:first-child {
+    margin-left: 0;
+  }
 }
 
-.button-icon-small {
-  width: 30px;
-  height: 30px;
+.volume-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: white;
+}
+
+.volume-button-container {
+  display: flex;
+  justify-content: center;
+
+  mat-icon {
+    width: 30px;
+    height: 30px;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+    margin-left: 30px;
+  }
+  button:first-child {
+    margin-left: 0;
+  }
 }
