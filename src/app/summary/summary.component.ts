@@ -1,30 +1,23 @@
-import { Component, Input, OnDestroy, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { SummaryItem } from './summaryItem';
 import { ControlService } from '../control.service';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.scss']
 })
-export class SummaryComponent implements OnInit, OnDestroy {
+export class SummaryComponent implements OnInit {
 
-  @Input() summaryItem: SummaryItem;
+  summaryItem: Observable<SummaryItem>;
 
-  private subscription: Subscription;
-
-  constructor(private controlService: ControlService, private ngZone: NgZone) {
+  constructor(private controlService: ControlService) {
   }
 
   ngOnInit() {
-    this.subscription = this.controlService.playItemObservable
-      .subscribe(playItem =>
-        this.ngZone.run(() => this.summaryItem = new SummaryItem(playItem.from, playItem.title)));
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.summaryItem = this.controlService.playItemObservable
+      .map(playItem => new SummaryItem(playItem.from, playItem.title));
   }
 
 }

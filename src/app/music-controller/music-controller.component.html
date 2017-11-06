@@ -1,19 +1,21 @@
 <div class="music-controller-container">
-  <img class="play-item-thumbnail" src={{playItem.thumbnail}}>
+  <div *ngIf="(playItem | async) || {}; let play">
+    <img class="play-item-thumbnail" src={{play.thumbnail}} />
+  </div>
   <div class="control-container">
-    <marquee class="music-title">{{playItem.title}}</marquee>
+    <marquee class="music-title">{{(playItem | async)?.title}}</marquee>
     <div class="music-button-container">
       <button mat-icon-button color="primary" (click)="onBack()">
         <mat-icon aria-label="上一首" svgIcon="back"></mat-icon>
       </button>
       <button mat-icon-button color="primary" (click)="onPlay()">
-        <mat-icon aria-label="播放" svgIcon="{{playButtonIcon}}"></mat-icon>
+        <mat-icon aria-label="播放" svgIcon="{{playButtonIcon | async}}"></mat-icon>
       </button>
       <button mat-icon-button color="primary" (click)="onNext()">
         <mat-icon aria-label="下一首" svgIcon="next"></mat-icon>
       </button>
     </div>
-    <div class="volume-title">Volume: {{volume}}</div>
+    <div class="volume-title">Volume: {{volume | async}}</div>
     <div class="volume-button-container">
       <button mat-icon-button color="primary" (click)="onMinus()">
         <mat-icon aria-label="小聲" svgIcon="minus"></mat-icon>

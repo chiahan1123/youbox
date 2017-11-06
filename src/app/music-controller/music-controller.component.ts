@@ -1,9 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs/Observable';
 import { ControlService } from '../control.service';
 import { FetchService } from '../fetch.service';
-import { Subscription } from 'rxjs/Subscription';
 import { PlayItem } from '../playlist-item/playItem';
 
 @Component({
@@ -11,15 +11,14 @@ import { PlayItem } from '../playlist-item/playItem';
   templateUrl: './music-controller.component.html',
   styleUrls: ['./music-controller.component.scss']
 })
-export class MusicControllerComponent implements OnInit, OnDestroy {
+export class MusicControllerComponent implements OnInit {
 
-  subscription: Subscription;
-  playingSubscription: Subscription;
-  volumeSubscription: Subscription;
-  playItem = new PlayItem('', '', '', '', '', '', '');
-  playButtonIcon = 'play';
-  volume = 0;
+  playItem: Observable<PlayItem>;
+  playButtonIcon: Observable<string>;
+  volume: Observable<number>;
 
+  private isPlaying = false;
+  private volumeValue = 0;
   private volumeIncrement = 5;
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer,
@@ -42,18 +41,12 @@ export class MusicControllerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.controlService.playItemObservable
-      .subscribe(playItem => this.playItem = playItem, error => console.log(error));
-    this.playingSubscription = this.fetchService.fetchIsPlaying()
-      .subscribe(isPlaying => this.playButtonIcon = isPlaying ? 'pause' : 'play');
-    this.volumeSubscription = this.fetchService.fetchStatusVolume()
-      .subscribe(volume => this.volume = volume);
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.playingSubscription.unsubscribe();
-    this.volumeSubscription.unsubscribe();
+    this.playItem = this.controlService.playItemObservable;
+    this.playButtonIcon = this.fetchService.fetchIsPlaying()
+      .do(isPlaying => this.isPlaying = isPlaying)
+      .map(isPlaying => isPlaying ? 'pause' : 'play');
+    this.volume = this.fetchService.fetchStatusVolume()
+      .do(volume => this.volumeValue = volume);
   }
 
   onBack() {
@@ -65,19 +58,19 @@ export class MusicControllerComponent implements OnInit, OnDestroy {
   }
 
   onPlay() {
-    if (this.playButtonIcon === 'play') {
-      this.fetchService.play(true);
-    } else {
+    if (this.isPlaying) {
       this.fetchService.pause(true);
+    } else {
+      this.fetchService.play(true);
     }
   }
 
   onPlus() {
-    this.fetchService.updateStatusVolume(Math.min(Math.max(this.volume + this.volumeIncrement, 0), 100));
+    this.fetchService.updateStatusVolume(Math.min(Math.max(this.volumeValue + this.volumeIncrement, 0), 100));
   }
 
   onMinus() {
-    this.fetchService.updateStatusVolume(Math.min(Math.max(this.volume - this.volumeIncrement, 0), 100));
+    this.fetchService.updateStatusVolume(Math.min(Math.max(this.volumeValue - this.volumeIncrement, 0), 100));
   }
 
   onMute() {
