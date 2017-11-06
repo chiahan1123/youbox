@@ -31,12 +31,10 @@ export class ControlService implements OnDestroy {
   private playItemSubject = new Subject<PlayItem>();
   private actionPlaySubject = new Subject<void>();
   private actionPauseSubject = new Subject<void>();
-  private actionVolumeSubject = new Subject<number>();
 
   playItemObservable = this.playItemSubject.asObservable();
   actionPlayObservable = this.actionPlaySubject.asObservable();
   actionPauseObservable = this.actionPauseSubject.asObservable();
-  actionVolumeObservable = this.actionVolumeSubject.asObservable();
 
   constructor(private fetchService: FetchService) {
     this.playItemSubscription = Observable.combineLatest(
@@ -70,21 +68,6 @@ export class ControlService implements OnDestroy {
       .subscribe(bool => {
         this.playItem(PlayControl.PREVIOUS);
         this.fetchService.back(false);
-      });
-    this.actionPlusSubscription = this.fetchService.fetchActionPlus()
-      .subscribe(bool => {
-        this.actionVolumeSubject.next(5);
-        this.fetchService.plus(false);
-      });
-    this.actionMinusSubscription = this.fetchService.fetchActionMinus()
-      .subscribe(bool => {
-        this.actionVolumeSubject.next(-5);
-        this.fetchService.minus(false);
-      });
-    this.actionMuteSubscription = this.fetchService.fetchActionMute()
-      .subscribe(bool => {
-        this.actionVolumeSubject.next(-100);
-        this.fetchService.mute(false);
       });
     this.actionOnDemandSubscription = this.fetchService.fetchActionOnDemand()
       .subscribe(id => {

@@ -34,6 +34,13 @@ export class FetchService {
         .map(id => id as boolean));
   }
 
+  fetchStatusVolume(): Observable<number> {
+    return Util.ensureLogin(this.afAuth,
+      this.afDb.object('status/volume')
+        .valueChanges()
+        .map(volume => volume ? volume : 0));
+  }
+
   fetchActionPlay(): Observable<any> {
     return Util.ensureLogin(this.afAuth,
       this.afDb.object('action/play/')
@@ -62,27 +69,6 @@ export class FetchService {
         .filter(bool => bool as boolean));
   }
 
-  fetchActionPlus(): Observable<any> {
-    return Util.ensureLogin(this.afAuth,
-      this.afDb.object('action/plus/')
-        .valueChanges()
-        .filter(bool => bool as boolean));
-  }
-
-  fetchActionMinus(): Observable<any> {
-    return Util.ensureLogin(this.afAuth,
-      this.afDb.object('action/minus/')
-        .valueChanges()
-        .filter(bool => bool as boolean));
-  }
-
-  fetchActionMute(): Observable<any> {
-    return Util.ensureLogin(this.afAuth,
-      this.afDb.object('action/mute/')
-        .valueChanges()
-        .filter(bool => bool as boolean));
-  }
-
   fetchActionOnDemand(): Observable<string> {
     return Util.ensureLogin(this.afAuth,
       this.afDb.object('action/onDemand')
@@ -105,6 +91,10 @@ export class FetchService {
     this.afDb.object('status/' + new Date().toISOString().slice(0, 10) + '/isPlaying/').set(isPlaying);
   }
 
+  updateStatusVolume(volume: number) {
+    this.afDb.object('status/volume/').set(volume);
+  }
+
   next(action: boolean) {
     this.afDb.object('action/next').set(action);
   }
@@ -119,18 +109,6 @@ export class FetchService {
 
   pause(action: boolean) {
     this.afDb.object('action/pause').set(action);
-  }
-
-  plus(action: boolean) {
-    this.afDb.object('action/plus').set(action);
-  }
-
-  minus(action: boolean) {
-    this.afDb.object('action/minus').set(action);
-  }
-
-  mute(action: boolean) {
-    this.afDb.object('action/mute').set(action);
   }
 
   onDemand(videoId: string) {

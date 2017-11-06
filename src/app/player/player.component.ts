@@ -11,10 +11,10 @@ import { FetchService } from '../fetch.service';
 export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   player: YT.Player;
+  private volumeSubscription: Subscription;
   private playItemSubscription: Subscription;
   private actionPlaySubscription: Subscription;
   private actionPauseSubscription: Subscription;
-  private actionVolumeSubsription: Subscription;
   private initiated = false;
 
   constructor(private controlService: ControlService, private fetchService: FetchService) {
@@ -46,6 +46,9 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
+    if (this.volumeSubscription) {
+      this.volumeSubscription.unsubscribe();
+    }
     if (this.playItemSubscription) {
       this.playItemSubscription.unsubscribe();
     }
@@ -59,6 +62,8 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onReady(event) {
     this.player.getIframe().style.position = 'absolute';
+    this.volumeSubscription = this.fetchService.fetchStatusVolume()
+      .subscribe(volume => this.player.setVolume(volume));
     this.playItemSubscription = this.controlService.playItemObservable
       .subscribe(playItem => {
         this.initiated = true;
@@ -71,9 +76,6 @@ export class PlayerComponent implements OnInit, OnDestroy, AfterViewInit {
       .subscribe(() => this.player.playVideo());
     this.actionPauseSubscription = this.controlService.actionPauseObservable
       .subscribe(() => this.player.pauseVideo());
-    this.actionVolumeSubsription = this.controlService.actionVolumeObservable
-      .subscribe(value =>
-        this.player.setVolume(Math.min(Math.max(this.player.getVolume() + value, 0), 100)));
   }
 
   onStateChange(event) {
