@@ -28,10 +28,7 @@ export class PlayListComponent implements OnInit {
       .do(() => this.progressService.hide());
     this.currentPlaying = this.fetchService.fetchStatusCurrentPlaying()
       .do(currentPlaying => {
-        console.log('playing');
         if (currentPlaying) {
-
-          console.log('playing 2');
           this.scrollToService.scrollTo({
             target: currentPlaying
           });
