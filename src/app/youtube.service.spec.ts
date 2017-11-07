@@ -1,11 +1,17 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { YoutubeService } from './youtube.service';
+import { AppModule } from './app.module';
 
 describe('YoutubeService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [YoutubeService]
+      imports: [
+        AppModule,
+        RouterTestingModule
+      ],
+      providers: [ YoutubeService ]
     });
   });
 
