@@ -1,11 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { FetchService } from './fetch.service';
+import { AppModule } from './app.module';
 
 describe('FetchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FetchService]
+      imports: [
+        AppModule,
+        RouterTestingModule
+      ]
     });
   });
 

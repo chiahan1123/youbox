@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ClientComponent } from './client.component';
+import { PlayListItemComponent } from './playlist-item.component';
 import { AppModule } from '../app.module';
 
-describe('ClientComponent', () => {
-  let component: ClientComponent;
-  let fixture: ComponentFixture<ClientComponent>;
+describe('PlayListItemComponent', () => {
+  let component: PlayListItemComponent;
+  let fixture: ComponentFixture<PlayListItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -19,7 +19,7 @@ describe('ClientComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ClientComponent);
+    fixture = TestBed.createComponent(PlayListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

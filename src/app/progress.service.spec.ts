@@ -1,10 +1,10 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ControlService } from './control.service';
+import { ProgressService } from './progress.service';
 import { AppModule } from './app.module';
 
-describe('ControlService', () => {
+describe('ProgressService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -14,7 +14,7 @@ describe('ControlService', () => {
     });
   });
 
-  it('should be created', inject([ControlService], (service: ControlService) => {
+  it('should be created', inject([ProgressService], (service: ProgressService) => {
     expect(service).toBeTruthy();
   }));
 });
